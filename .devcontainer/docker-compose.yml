@@ -1,0 +1,29 @@
+# Codespace = два контейнери: app (тут працюєш ти: Java 17 + Maven) і db (Postgres).
+# Застосунок бачить базу за адресою db:5432.
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/java:1-17-bookworm
+    command: sleep infinity
+    volumes:
+      - ../..:/workspaces:cached
+      - m2:/home/vscode/.m2
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/library
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: library
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+  m2:

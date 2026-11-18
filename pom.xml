@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>dev.weredok</groupId>
+    <artifactId>library</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Library</name>
+
+    <!-- Порядок важливий: фронт збирається до бекенду, бо бекенд копіює зібраний JS у static -->
+    <modules>
+        <module>library-shared</module>
+        <module>library-frontend</module>
+        <module>library-backend</module>
+    </modules>
+
+    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <gwt.version>2.12.1</gwt.version>
+        <gwt-maven-plugin.version>1.1.0</gwt-maven-plugin.version>
+        <domino-ui.version>2.0.3</domino-ui.version>
+        <domino-rest.version>1.0.2</domino-rest.version>
+        <domino-jackson.version>1.0.4</domino-jackson.version>
+        <elemental2.version>1.2.1</elemental2.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>dev.weredok</groupId>
+                <artifactId>library-shared</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.gwtproject</groupId>
+                <artifactId>gwt</artifactId>
+                <version>${gwt.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

@@ -1,0 +1,14 @@
+target/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# GWT
+gwt-unitCache/
+.gwt/
+war/
+
+# локальні змінні середовища
+.env
+c.txt

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//gwtproject//DTD GWT 2.11.0//EN"
+        "https://www.gwtproject.org/doctype/2.11.0/gwt-module.dtd">
+<module>
+    <inherits name="com.google.gwt.core.Core"/>
+    <inherits name="org.dominokit.domino.ui.DominoUI"/>
+    <inherits name="org.dominokit.rest.Rest"/>
+    <inherits name="dev.weredok.library.Shared"/>
+
+    <entry-point class="dev.weredok.library.frontend.LibraryApp"/>
+
+    <!-- Модуль лежить у пакеті dev.weredok.library.frontend, компілюємо весь пакет -->
+    <source path=""/>
+</module>

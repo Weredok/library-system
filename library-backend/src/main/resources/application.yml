@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: library
+  datasource:
+    # Підключення до вашого Postgres. Базу створіть заздалегідь (порожню) — таблиці зробить Flyway.
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/library}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    # Схемою керує тільки Flyway. validate — Hibernate при старті перевіряє, що сутності збігаються з таблицями.
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: ${PORT:8080}
+  servlet:
+    session:
+      timeout: 8h
+      cookie:
+        http-only: true
+        # SameSite=Strict — браузер не відправить cookie з чужого сайту, це захист від CSRF
+        same-site: strict
+  error:
+    include-message: never
+
+library:
+  # Часовий пояс бібліотеки. Від нього залежить, що таке «сьогодні» для термінів видачі.
+  zone: Europe/Kyiv
+
+logging:
+  level:
+    dev.weredok.library: INFO

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//gwtproject//DTD GWT 2.11.0//EN"
+        "https://www.gwtproject.org/doctype/2.11.0/gwt-module.dtd">
+<module>
+    <inherits name="com.google.gwt.core.Core"/>
+    <source path="shared"/>
+</module>

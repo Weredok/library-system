@@ -1,0 +1,46 @@
+{
+  "name": "library",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "shutdownAction": "stopCompose",
+
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "none",
+      "installMaven": "true"
+    }
+  },
+
+  "forwardPorts": [8080, 9876],
+  "portsAttributes": {
+    "8080": { "label": "Library (Spring Boot)", "onAutoForward": "notify" },
+    "9876": { "label": "GWT codeserver", "onAutoForward": "silent" }
+  },
+
+  "postCreateCommand": "mvn -q -B -DskipTests install -pl library-shared",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-spring-boot",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
+      ],
+      "settings": {
+        "sqltools.connections": [
+          {
+            "name": "library (db)",
+            "driver": "PostgreSQL",
+            "server": "db",
+            "port": 5432,
+            "database": "library",
+            "username": "postgres",
+            "password": "postgres"
+          }
+        ]
+      }
+    }
+  }
+}
